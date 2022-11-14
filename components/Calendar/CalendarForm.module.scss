@@ -1,0 +1,32 @@
+.form {
+  width: 22%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 6px;
+  .card {
+    display: flex;
+    justify-content: center;
+  }
+  .col {
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 5px;
+      border: 1px solid transparent;
+      font-size: .95rem;
+    }
+    .day {
+      display: flex;
+      justify-content: center;
+      &:hover {
+        background-color: white;
+        border-radius: 100%;
+        cursor: pointer;
+        border: 1px solid black;
+      }
+    }
+  }
+}
+
