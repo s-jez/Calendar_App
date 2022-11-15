@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import CalendarForm from "../components/Calendar/CalendarForm";
-import CalendarInput from "../components/Input/CalendarInput";
+import CalendarForm from "../components/Calendar/Form/CalendarForm";
+import CalendarInput from "../components/Calendar/Input/CalendarInput";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {

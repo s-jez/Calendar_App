@@ -4,7 +4,7 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const MonthInput = () => {
   return (
-    <div className={styles["month-input"]}>
+    <div className={styles.month}>
       <div className={styles.arrow}>
         <SlArrowLeft />
       </div>

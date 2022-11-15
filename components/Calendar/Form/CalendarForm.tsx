@@ -1,7 +1,7 @@
 import React from "react";
 import CalendarInput from "../Input/CalendarInput";
-import MonthInput from "../Input/MonthInput";
-import styles from "../Calendar/CalendarForm.module.scss";
+import MonthInput from "../../Input/MonthInput";
+import styles from "../Form/CalendarForm.module.scss";
 
 const CalendarForm = () => {
   return (
