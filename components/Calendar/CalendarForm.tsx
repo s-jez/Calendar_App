@@ -1,5 +1,5 @@
 import React from "react";
-import DateInput from "../Input/DateInput";
+import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../Input/MonthInput";
 import styles from "../Calendar/CalendarForm.module.scss";
 

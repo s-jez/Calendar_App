@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import CalendarForm from "../components/Calendar/CalendarForm";
+import CalendarInput from "../components/Input/CalendarInput";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <CalendarInput />
         <CalendarForm />
       </main>
     </div>
