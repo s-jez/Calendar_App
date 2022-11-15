@@ -7,7 +7,7 @@ const CalendarInput = () => {
       <label>Enter date:</label>
       <input
         id="calendar-input"
-        type="date"
+        type="text"
         className={styles["calendar__input"]}
         placeholder="DD/MM/YYYY"
       />
