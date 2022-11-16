@@ -10,7 +10,6 @@ const MonthInput = () => {
       </div>
       <div className={styles.bold}>Maj 2022</div>
       <div className={styles.arrow}>
-        {" "}
         <SlArrowRight />
       </div>
     </div>

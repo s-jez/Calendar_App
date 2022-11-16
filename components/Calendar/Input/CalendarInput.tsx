@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../Calendar/Input/CalendarInput.module.scss";
 import form from "../../Calendar/Form/CalendarForm.module.scss";
+import CalendarForm from "../Form/CalendarForm";
 
 const CalendarInput = () => {
   const [focused, setFocused] = useState(false);
@@ -17,6 +18,7 @@ const CalendarInput = () => {
         onFocus={onFocus}
         onBlur={onBlur}
       />
+      {focused && <CalendarForm />}
     </div>
   );
 };
