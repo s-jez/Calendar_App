@@ -19,7 +19,7 @@ const CalendarForm = () => {
       <h3>Dzisiaj jest: {date}</h3>
       <MonthInput month={currentMonth} year={currentYear} />
       <div className={styles.card}>
-        <div className={styles.col}>
+        {/* <div className={styles.col}>
           <div>Pn</div>
           <div className={styles.day}>1</div>
           <div className={styles.day}>8</div>
@@ -69,7 +69,7 @@ const CalendarForm = () => {
           <div className={styles.day}>14</div>
           <div className={styles.day}>21</div>
           <div className={styles.day}>28</div>
-        </div>
+        </div> */}
       </div>
     </form>
   );
