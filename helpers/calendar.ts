@@ -7,13 +7,13 @@ export const CURRENT_MONTH = +(new Date().getMonth() + 1);
 export const CALENDAR_WEEKS = 6;
 
 export const CALENDAR_WEEK_DAYS = {
-  Niedziela: "Nd",
+  Monday: "Pn",
   Tuesday: "Wt",
   Wednesday: "Śr",
   Thursday: "Cz",
   Friday: "Pt",
   Saturday: "Sb",
-  Monday: "Pn",
+  Niedziela: "Nd",
 };
 export const CALENDAR_MONTHS = {
   January: "Styczeń",

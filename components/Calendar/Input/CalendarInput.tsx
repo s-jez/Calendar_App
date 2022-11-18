@@ -18,7 +18,8 @@ const CalendarInput = () => {
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      {focused && <CalendarForm />}
+      {/* {focused && <CalendarForm />} */}
+      <CalendarForm />
     </div>
   );
 };
