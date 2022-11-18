@@ -81,7 +81,7 @@ const Calendar: FC<ICalendar> = ({ date, onChangeDate }) => {
   return (
     <div>
       <div>
-        {Object.keys(CALENDAR_WEEK_DAYS)}
+        {/* {Object.keys(CALENDAR_WEEK_DAYS)} */}
         {getCalendarDate()}
       </div>
     </div>

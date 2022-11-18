@@ -30,6 +30,21 @@ export const CALENDAR_MONTHS = {
   December: "Grudzień",
 };
 
+export const CALENDAR_MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (month = CURRENT_MONTH, year = CURRENT_YEAR) => {
 

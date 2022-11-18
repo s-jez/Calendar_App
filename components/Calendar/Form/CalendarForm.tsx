@@ -2,11 +2,22 @@ import React from "react";
 import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
+import Calendar from "../../../helpers/calendar";
+import { getMonthDays } from "../../../helpers/getMonthDate";
 
 const CalendarForm = () => {
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
+  const date = `${currentDay}/${currentMonth}/${currentYear}`;
+
+  const maxMonthDays = getMonthDays(currentMonth, currentYear);
+  console.log(maxMonthDays);
   return (
     <form className={styles.form}>
-      <MonthInput />
+      <h3>Dzisiaj jest: {date}</h3>
+      <MonthInput month={currentMonth} year={currentYear} />
       <div className={styles.card}>
         <div className={styles.col}>
           <div>Pn</div>
