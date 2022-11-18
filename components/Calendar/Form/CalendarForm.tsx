@@ -13,12 +13,29 @@ const CalendarForm = () => {
   const date = `${currentDay}/${currentMonth}/${currentYear}`;
 
   const maxMonthDays = getMonthDays(currentMonth, currentYear);
+
+  const getAllDays = () => {
+    var days = [];
+    for (let i = 1; i <= maxMonthDays; i++) {
+      days.push(
+        <div>
+          <div className={styles.col}>
+            <div className={styles.day} key={i}>
+              {i}
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return days;
+  };
   console.log(maxMonthDays);
   return (
     <form className={styles.form}>
       <h3>Dzisiaj jest: {date}</h3>
       <MonthInput month={currentMonth} year={currentYear} />
       <div className={styles.card}>
+        {getAllDays()}
         {/* <div className={styles.col}>
           <div>Pn</div>
           <div className={styles.day}>1</div>
