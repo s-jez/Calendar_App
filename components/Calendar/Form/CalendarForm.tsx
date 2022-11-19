@@ -18,8 +18,8 @@ const CalendarForm = () => {
     var days = [];
     for (let i = 1; i <= maxMonthDays; i++) {
       days.push(
-        <div>
-          <div className={styles.col}>
+        <div key={i}>
+          <div className={styles.col} key={i}>
             <div className={styles.day} key={i}>
               {i}
             </div>
@@ -33,14 +33,13 @@ const CalendarForm = () => {
     let months: any[] = [];
     Object.values(CALENDAR_WEEK_DAYS).forEach((item) =>
       months.push(
-        <div className={styles.col}>
-          <div>{item}</div>
+        <div className={styles.col} key={item}>
+          <div key={item}>{item}</div>
         </div>
       )
     );
     return months;
   };
-  console.log(maxMonthDays);
   return (
     <form className={styles.form}>
       <h3>Dzisiaj jest: {date}</h3>
