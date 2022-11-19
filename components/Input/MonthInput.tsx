@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styles from "../Input/Input.module.scss";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { CALENDAR_MONTH_NAMES } from "../../helpers/calendar";
@@ -7,17 +7,16 @@ import { getNextMonth, getPrevMonth } from "../../helpers/getMonthDate";
 interface IMonthInput {
   month: number;
   year: number;
+  handlePrevMonth: MouseEventHandler<HTMLDivElement> | undefined;
+  handleNextMonth: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-const MonthInput = ({ month, year }: IMonthInput) => {
-  const handlePrevMonth = () => {
-    const date = Object.assign(getPrevMonth(month, year));
-    console.log(date);
-  };
-  const handleNextMonth = () => {
-    const date = Object.assign(getNextMonth(month, year));
-    console.log(date);
-  };
+const MonthInput = ({
+  month,
+  year,
+  handlePrevMonth,
+  handleNextMonth,
+}: IMonthInput) => {
   return (
     <div className={styles.month}>
       <div className={styles.arrow} onClick={handlePrevMonth}>

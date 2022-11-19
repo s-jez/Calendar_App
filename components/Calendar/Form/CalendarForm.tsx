@@ -3,7 +3,11 @@ import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
 import Calendar, { CALENDAR_WEEK_DAYS } from "../../../helpers/calendar";
-import { getMonthDays } from "../../../helpers/getMonthDate";
+import {
+  getMonthDays,
+  getNextMonth,
+  getPrevMonth,
+} from "../../../helpers/getMonthDate";
 
 const CalendarForm = () => {
   const currentDate = new Date();
@@ -40,10 +44,23 @@ const CalendarForm = () => {
     );
     return months;
   };
+  const handlePrevMonth = () => {
+    const date = Object.assign(getPrevMonth(currentMonth, currentYear));
+    console.log(date);
+  };
+  const handleNextMonth = () => {
+    const date = Object.assign(getNextMonth(currentMonth, currentYear));
+    console.log(date);
+  };
   return (
     <form className={styles.form}>
       <h3>Dzisiaj jest: {date}</h3>
-      <MonthInput month={currentMonth} year={currentYear} />
+      <MonthInput
+        month={currentMonth}
+        year={currentYear}
+        handlePrevMonth={handlePrevMonth}
+        handleNextMonth={handleNextMonth}
+      />
       <div className={styles.card}>
         {getAllMonths()}
         {getAllDays()}
