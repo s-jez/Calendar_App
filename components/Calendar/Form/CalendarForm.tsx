@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, FC } from "react";
 import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
@@ -9,7 +9,11 @@ import {
   getPrevMonth,
 } from "../../../helpers/getMonthDate";
 
-const CalendarForm = () => {
+interface ICalendarForm {
+  focused: boolean;
+}
+
+const CalendarForm = ({ focused }: ICalendarForm) => {
   const currentDate = new Date();
   const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1;
@@ -52,6 +56,7 @@ const CalendarForm = () => {
     const date = Object.assign(getNextMonth(currentMonth, currentYear));
     console.log(date);
   };
+  if (!focused) return;
   return (
     <form className={styles.form}>
       <h3>Dzisiaj jest: {date}</h3>
