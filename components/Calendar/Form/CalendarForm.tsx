@@ -1,4 +1,4 @@
-import React, { Dispatch, FC } from "react";
+import React, { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
 import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
@@ -56,21 +56,24 @@ const CalendarForm = ({ focused }: ICalendarForm) => {
     const date = Object.assign(getNextMonth(currentMonth, currentYear));
     console.log(date);
   };
-  if (!focused) return;
   return (
-    <form className={styles.form}>
-      <h3>Dzisiaj jest: {date}</h3>
-      <MonthInput
-        month={currentMonth}
-        year={currentYear}
-        handlePrevMonth={handlePrevMonth}
-        handleNextMonth={handleNextMonth}
-      />
-      <div className={styles.card}>
-        {getAllMonths()}
-        {getAllDays()}
-      </div>
-    </form>
+    <>
+      {focused && (
+        <form className={styles.form}>
+          <h3>Dzisiaj jest: {date}</h3>
+          <MonthInput
+            month={currentMonth}
+            year={currentYear}
+            handlePrevMonth={handlePrevMonth}
+            handleNextMonth={handleNextMonth}
+          />
+          <div className={styles.card}>
+            {getAllMonths()}
+            {getAllDays()}
+          </div>
+        </form>
+      )}
+    </>
   );
 };
 
