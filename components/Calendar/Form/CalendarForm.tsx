@@ -11,9 +11,10 @@ import {
 
 interface ICalendarForm {
   focused: boolean;
+  onClick: () => void;
 }
 
-const CalendarForm = ({ focused }: ICalendarForm) => {
+const CalendarForm = ({ focused, onClick }: ICalendarForm) => {
   const currentDate = new Date();
   const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1;
@@ -59,7 +60,7 @@ const CalendarForm = ({ focused }: ICalendarForm) => {
   return (
     <>
       {focused && (
-        <form className={styles.form}>
+        <form className={styles.form} onClick={onClick}>
           <h3>Dzisiaj jest: {date}</h3>
           <MonthInput
             month={currentMonth}
