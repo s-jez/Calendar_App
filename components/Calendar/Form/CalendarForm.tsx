@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, MouseEventHandler, SetStateAction } from "react";
+import React, { LegacyRef, RefObject } from "react";
 import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
@@ -11,10 +11,10 @@ import {
 
 interface ICalendarForm {
   focused: boolean;
-  onClick: () => void;
+  ref: RefObject<HTMLInputElement>;
 }
 
-const CalendarForm = ({ focused, onClick }: ICalendarForm) => {
+const CalendarForm = ({ focused, ref }: ICalendarForm) => {
   const currentDate = new Date();
   const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1;
@@ -60,8 +60,8 @@ const CalendarForm = ({ focused, onClick }: ICalendarForm) => {
   return (
     <>
       {focused && (
-        <form className={styles.form} onClick={onClick}>
-          <h3>Dzisiaj jest: {date}</h3>
+        <form className={styles.form}>
+          {/* <h3>Dzisiaj jest: {date}</h3> */}
           <MonthInput
             month={currentMonth}
             year={currentYear}

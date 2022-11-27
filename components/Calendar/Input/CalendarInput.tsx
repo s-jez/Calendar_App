@@ -8,15 +8,10 @@ const CalendarInput = () => {
 
   const ref = useRef<HTMLInputElement>(null);
 
-  const handleClick = () => {
-    ref.current?.focus();
-  };
-
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
   return (
     <div className={styles["calendar"]}>
-      <label>Enter date:</label>
       <input
         id="calendar-input"
         type="text"
@@ -26,7 +21,7 @@ const CalendarInput = () => {
         onBlur={onBlur}
         ref={ref}
       />
-      <CalendarForm focused={focused} onClick={handleClick} />
+      <CalendarForm focused={focused} ref={ref} />
     </div>
   );
 };
