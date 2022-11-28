@@ -1,4 +1,4 @@
-import React, { Dispatch, LegacyRef, RefObject, SetStateAction } from "react";
+import React, { Dispatch, useState, SetStateAction } from "react";
 import CalendarInput from "../Input/CalendarInput";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
@@ -11,13 +11,13 @@ import {
 
 interface ICalendarForm {
   focused: boolean;
-  ref: RefObject<HTMLInputElement>;
+
   setInputValue: Dispatch<SetStateAction<string>>;
   onBlur: () => void;
 }
 
 const CalendarForm = ({ focused, onBlur, setInputValue }: ICalendarForm) => {
-  const currentDate = new Date();
+  const [currentDate, setCurrentDate] = useState(new Date());
   const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();

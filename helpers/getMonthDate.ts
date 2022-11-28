@@ -43,6 +43,13 @@ export const getPrevMonth = (month: number, year: number) => {
   };
 };
 
+export const getCurrentMonth = (month: number, year: number) => {
+  return {
+    month: month,
+    year: year,
+  }
+}
+
 // Pads a string with zeroes zeroPad(5, 2) => "05"
 export const zeroPad = (value: number, length: number) => {
   return `${value}`.padStart(length, "0");

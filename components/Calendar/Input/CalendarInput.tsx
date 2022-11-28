@@ -22,10 +22,10 @@ const CalendarInput = () => {
         onBlur={onBlur}
         ref={ref}
         value={inputValue}
+        onChange={() => setInputValue(inputValue)}
       />
       <CalendarForm
         focused={focused}
-        ref={ref}
         setInputValue={setInputValue}
         onBlur={onBlur}
       />
