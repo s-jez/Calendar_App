@@ -5,6 +5,7 @@ import CalendarForm from "../Form/CalendarForm";
 
 const CalendarInput = () => {
   const [focused, setFocused] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -20,8 +21,14 @@ const CalendarInput = () => {
         onFocus={onFocus}
         onBlur={onBlur}
         ref={ref}
+        value={inputValue}
       />
-      <CalendarForm focused={focused} ref={ref} />
+      <CalendarForm
+        focused={focused}
+        ref={ref}
+        setInputValue={setInputValue}
+        onBlur={onBlur}
+      />
     </div>
   );
 };
