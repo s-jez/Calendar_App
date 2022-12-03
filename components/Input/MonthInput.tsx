@@ -1,15 +1,7 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import styles from "../Input/Input.module.scss";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { CALENDAR_MONTH_NAMES } from "../../helpers/calendar";
-import { getNextMonth, getPrevMonth } from "../../helpers/getMonthDate";
-
-interface IMonthInput {
-  month: number;
-  year: number;
-  handlePrevMonth: MouseEventHandler<HTMLDivElement> | undefined;
-  handleNextMonth: MouseEventHandler<HTMLDivElement> | undefined;
-}
 
 const MonthInput = ({
   month,

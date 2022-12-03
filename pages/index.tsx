@@ -1,34 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
-import CalendarForm from "../components/Calendar/Form/CalendarForm";
 import CalendarInput from "../components/Calendar/Input/CalendarInput";
-import {
-  getCurrentMonth,
-  getMonthDays,
-  getMonthFirstDay,
-  getNextMonth,
-  getPrevMonth,
-} from "../helpers/getMonthDate";
 import styles from "../styles/Home.module.scss";
-import { useEffect } from "react";
 
 export default function Home() {
-  // Testing functions
-  useEffect(() => {
-    const date = new Date();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    console.log("Next month is: ");
-    console.log(getNextMonth(month, year));
-    console.log("Current date is: ");
-    console.log(getCurrentMonth(month, year));
-    console.log("Previous month is: ");
-    console.log(getPrevMonth(month, year));
-    console.log("First day of current month is ");
-    console.log(getMonthFirstDay(month, year));
-    console.log("Month days are: ");
-    console.log(getMonthDays(month, year));
-  }, []);
   return (
     <div className={styles.container}>
       <Head>
