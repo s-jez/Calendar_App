@@ -1,27 +1,3 @@
-import { CURRENT_MONTH, CURRENT_YEAR } from "./calendar";
-
-// Number of days in a month for a given year from 28 to 31 (int).
-export const getMonthDays = (month: number, year: number) => {
-  const months30 = [4, 6, 9, 11];
-  const leapYear = year % 4 === 0;
-  return month === 2
-    ? leapYear
-      ? 29
-      : 28
-    : months30.includes(month)
-    ? 30
-    : 31;
-};
-
-// First day of the month for a given year 1 - 7 (int) 1
-// 1 => Niedziela, 7 => Sobota
-export const getMonthFirstDay = (
-  month = CURRENT_MONTH,
-  year = CURRENT_YEAR
-) => {
-  return +new Date(`${year}-${zeroPad(month, 2)}-01`).getDay() + 1;
-};
-
 // Gets the month and year before given date
 // getPrevMonth(1, 2003) => {month: 12, 2002}
 export const getNextMonth = (month: number, year: number) => {
@@ -43,14 +19,21 @@ export const getPrevMonth = (month: number, year: number) => {
   };
 };
 
-export const getCurrentMonth = (month: number, year: number) => {
-  return {
-    month: month,
-    year: year,
-  }
-}
+export const getFirstDayOfMonth = (year: number, month: number) => new Date(year, month - 1, 1).getDay();
+
+export const getDaysInMonth = (year: number, month: number) => new Date(year, month, 0).getDate();
 
 // Pads a string with zeroes zeroPad(5, 2) => "05"
-export const zeroPad = (value: number, length: number) => {
-  return `${value}`.padStart(length, "0");
+export const zeroPad = (value: number, length: number) => `${value}`.padStart(length, "0");
+
+//
+// YYYY-MM-DD Format
+export const getDateISO = (date: Date = new Date()) => {
+  return [
+    date.getFullYear(),
+    zeroPad(+date.getMonth() + 1, 2),
+    zeroPad(+date.getDate(), 2),
+  ].join("-");
 };
+
+//

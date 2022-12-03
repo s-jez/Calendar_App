@@ -12,13 +12,13 @@ const MonthInput = ({
   return (
     <div className={styles.month}>
       <div className={styles.arrow} onClick={handlePrevMonth}>
-        <SlArrowLeft />
+        <SlArrowLeft size={13} />
       </div>
       <div className={styles.bold}>
         {CALENDAR_MONTH_NAMES[month - 1]} {year}
       </div>
       <div className={styles.arrow} onClick={handleNextMonth}>
-        <SlArrowRight />
+        <SlArrowRight size={13} />
       </div>
     </div>
   );

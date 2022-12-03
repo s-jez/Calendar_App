@@ -1,51 +1,52 @@
-import React, { Dispatch, useState, SetStateAction } from "react";
-import CalendarInput from "../Input/CalendarInput";
+import React, { useState, useEffect } from "react";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
-import Calendar, { CALENDAR_WEEK_DAYS } from "../../../helpers/calendar";
+import { CALENDAR_WEEKS, CALENDAR_WEEK_DAYS } from "../../../helpers/calendar";
 import {
-  getMonthDays,
+  getDaysInMonth,
+  getFirstDayOfMonth,
   getNextMonth,
   getPrevMonth,
 } from "../../../helpers/getMonthDate";
+import {
+  formatRangeOfMonth,
+  formatRangeOfYear,
+} from "../../../helpers/formatDate";
 
-interface ICalendarForm {
-  focused: boolean;
+const CalendarForm = ({
+  onClick,
+  inputFocus,
+  inputValue,
+  setInputValue,
+}: ICalendarForm) => {
+  const [dateState, setDateState] = useState<{
+    day: number;
+    month: number;
+    year: number;
+  }>({
+    day: 2,
+    month: 12,
+    year: 2022,
+  });
+  const month = dateState.month,
+    year = dateState.year;
 
-  setInputValue: Dispatch<SetStateAction<string>>;
-  onBlur: () => void;
-}
+  let firstDayCurrentMonth = getFirstDayOfMonth(year, month),
+    daysInCurrentMonth = getDaysInMonth(year, month);
 
-const CalendarForm = ({ focused, onBlur, setInputValue }: ICalendarForm) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const currentDay = currentDate.getDate();
-  const currentMonth = currentDate.getMonth() + 1;
-  const currentYear = currentDate.getFullYear();
-  const date = `${currentDay}/${currentMonth}/${currentYear}`;
+  firstDayCurrentMonth =
+    firstDayCurrentMonth === 0 ? CALENDAR_WEEKS : firstDayCurrentMonth;
 
-  const maxMonthDays = getMonthDays(currentMonth, currentYear);
+  useEffect(() => {
+    setDateState({
+      day: inputValue.day,
+      month: inputValue.month,
+      year: inputValue.year,
+    });
+  }, [inputValue]);
 
-  const getAllDays = () => {
-    var days = [];
-    for (let i = 1; i <= maxMonthDays; i++) {
-      days.push(
-        <div key={i}>
-          <div className={styles.col} key={i}>
-            <div
-              className={styles.day}
-              onClick={() => setInputValue(i.toString())}
-              key={i}
-            >
-              {i}
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return days;
-  };
   const getAllMonths = () => {
-    let months: any[] = [];
+    let months: JSX.Element[] = [];
     Object.values(CALENDAR_WEEK_DAYS).forEach((item) =>
       months.push(
         <div className={styles.col} key={item}>
@@ -55,22 +56,67 @@ const CalendarForm = ({ focused, onBlur, setInputValue }: ICalendarForm) => {
     );
     return months;
   };
-  const handlePrevMonth = () => {
-    const date = Object.assign(getPrevMonth(currentMonth, currentYear));
-    console.log(date);
+
+  const getAllDays = () => {
+    return new Array(daysInCurrentMonth + firstDayCurrentMonth - 1)
+      .fill(0)
+      .map((_, i) =>
+        i + 1 <= firstDayCurrentMonth ? (
+          <div key={i}></div>
+        ) : (
+          <div
+            key={i}
+            onClick={() =>
+              setInputValue({
+                day: i + 2 - firstDayCurrentMonth,
+                month: dateState.month,
+                year: dateState.year,
+              })
+            }
+          >
+            <div className={styles.col}>
+              {i + 2 - firstDayCurrentMonth === dateState.day ? (
+                <div className={styles.focused}>
+                  {i + 2 - firstDayCurrentMonth}
+                </div>
+              ) : (
+                <div className={styles.day}>{i + 2 - firstDayCurrentMonth}</div>
+              )}
+            </div>
+          </div>
+        )
+      );
   };
+
   const handleNextMonth = () => {
-    const date = Object.assign(getNextMonth(currentMonth, currentYear));
-    console.log(date);
+    const date = Object.assign(
+      getNextMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
+    );
+
+    setInputValue({
+      day: dateState.day,
+      month: date.month,
+      year: date.year,
+    });
+  };
+
+  const handlePrevMonth = () => {
+    const date = Object.assign(
+      getPrevMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
+    );
+    setInputValue({
+      day: dateState.day,
+      month: date.month,
+      year: date.year,
+    });
   };
   return (
     <>
-      {focused && (
-        <form className={styles.form} onBlur={onBlur}>
-          {/* <h3>Dzisiaj jest: {date}</h3> */}
+      {inputFocus && (
+        <form className={styles.form} onClick={onClick}>
           <MonthInput
-            month={currentMonth}
-            year={currentYear}
+            month={inputValue.month}
+            year={inputValue.year}
             handlePrevMonth={handlePrevMonth}
             handleNextMonth={handleNextMonth}
           />

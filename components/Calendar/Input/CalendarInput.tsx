@@ -1,33 +1,71 @@
-import React, { MutableRefObject, useRef, useState } from "react";
+import React, { useRef, useState, ChangeEvent, useEffect } from "react";
 import styles from "../../Calendar/Input/CalendarInput.module.scss";
-import form from "../../Calendar/Form/CalendarForm.module.scss";
 import CalendarForm from "../Form/CalendarForm";
+import {
+  formatRangeOfDay,
+  formatRangeOfMonth,
+  formatRangeOfYear,
+} from "../../../helpers/formatDate";
+import { getDateISO } from "../../../helpers/getMonthDate";
 
 const CalendarInput = () => {
-  const [focused, setFocused] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<{
+    day: number;
+    month: number;
+    year: number;
+  }>({ day: 2, month: 12, year: 2022 });
+  const [currentDate, setCurrentDate] = useState<any>(new Date());
+  const [inputFocus, setInputFocus] = useState(false);
 
-  const ref = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const onFocus = () => setFocused(true);
-  const onBlur = () => setFocused(false);
+  const inputClickHandler = () => {
+    if (document.activeElement !== inputRef.current) {
+      inputRef.current?.focus();
+    }
+    if (inputFocus) setInputFocus(true);
+  };
+
+  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const date = new Date(e.target.value),
+      year = formatRangeOfYear(date.getFullYear()),
+      month = formatRangeOfMonth(date.getMonth() + 1),
+      day = formatRangeOfDay(date.getDate(), year, month);
+    setInputValue({
+      year,
+      month,
+      day,
+    });
+  };
+
+  useEffect(() => {
+    setCurrentDate(
+      getDateISO(
+        new Date(inputValue.year, inputValue.month - 1, inputValue.day)
+      )
+    );
+  }, [inputValue]);
+
   return (
     <div className={styles["calendar"]}>
       <input
         id="calendar-input"
-        type="text"
+        type="date"
+        min="2020-01-01"
+        max="2030-01-01"
         className={styles.input}
         placeholder="Od kiedy wolne"
-        onFocus={onFocus}
-        onBlur={onBlur}
-        ref={ref}
-        value={inputValue}
-        onChange={() => setInputValue(inputValue)}
+        ref={inputRef}
+        onChange={inputChangeHandler}
+        value={currentDate}
+        onClick={inputClickHandler}
+        onFocus={() => setInputFocus(true)}
       />
       <CalendarForm
-        focused={focused}
+        inputValue={inputValue}
+        onClick={inputClickHandler}
+        inputFocus={inputFocus}
         setInputValue={setInputValue}
-        onBlur={onBlur}
       />
     </div>
   );
