@@ -2,4 +2,4 @@ export const formatRangeOfDay = (day: number, year: number, month: number): numb
 
 export const formatRangeOfMonth = (month: number): number => Math.max(Math.min(month, 12), 1);
 
-export const formatRangeOfYear = (year: number): number => Math.max(Math.min(year, 2030), 2020);
+export const formatRangeOfYear = (year: number): number => Math.max(Math.min(year, 2029), 2020);

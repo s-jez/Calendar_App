@@ -1,4 +1,5 @@
 .calendar {
+  margin: 20rem 0;
   .input {
     width: 16rem;
     height: 3rem;
@@ -7,5 +8,10 @@
     border: 1px solid black;
     font-size: .75rem;
     padding: 0 .5rem;
+  }
+  &__white {
+    background-color: white;
+    height: 5rem;
+    border-radius: .5rem;
   }
 }

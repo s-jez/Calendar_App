@@ -61,7 +61,7 @@ const CalendarForm = ({
     return new Array(daysInCurrentMonth + firstDayCurrentMonth - 1)
       .fill(0)
       .map((_, i) =>
-        i + 1 <= firstDayCurrentMonth ? (
+        i + 2 <= firstDayCurrentMonth ? (
           <div key={i}></div>
         ) : (
           <div
@@ -111,22 +111,22 @@ const CalendarForm = ({
     });
   };
   return (
-    <>
-      {inputFocus && (
-        <form className={styles.form} onClick={onClick}>
-          <MonthInput
-            month={inputValue.month}
-            year={inputValue.year}
-            handlePrevMonth={handlePrevMonth}
-            handleNextMonth={handleNextMonth}
-          />
-          <div className={styles.card}>
-            {getAllMonths()}
-            {getAllDays()}
-          </div>
-        </form>
-      )}
-    </>
+    <form
+      className={styles.form}
+      onClick={onClick}
+      style={{ visibility: inputFocus ? "visible" : "hidden" }}
+    >
+      <MonthInput
+        month={inputValue.month}
+        year={inputValue.year}
+        handlePrevMonth={handlePrevMonth}
+        handleNextMonth={handleNextMonth}
+      />
+      <div className={styles.card}>
+        {getAllMonths()}
+        {getAllDays()}
+      </div>
+    </form>
   );
 };
 
