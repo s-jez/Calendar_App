@@ -31,11 +31,24 @@ const CalendarInput = () => {
       year = formatRangeOfYear(date.getFullYear()),
       month = formatRangeOfMonth(date.getMonth() + 1),
       day = formatRangeOfDay(date.getDate(), year, month);
-    setInputValue({
-      year,
-      month,
+    inputDataHandler({
       day,
+      month,
+      year,
     });
+  };
+
+  const inputDataHandler = (data: {
+    day: number;
+    month: number;
+    year: number;
+  }) => {
+    if (inputRef.current !== null)
+      inputRef.current.value = getDateISO(
+        new Date(data.year, data.month, data.day)
+      );
+    // setCurrentDate(data);
+    setInputValue(data);
   };
 
   useEffect(() => {

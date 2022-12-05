@@ -110,6 +110,7 @@ const CalendarForm = ({
       year: date.year,
     });
   };
+
   return (
     <form
       className={styles.form}
