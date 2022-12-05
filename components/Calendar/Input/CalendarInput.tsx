@@ -7,6 +7,7 @@ import {
   formatRangeOfYear,
 } from "../../../helpers/formatDate";
 import { getDateISO } from "../../../helpers/getMonthDate";
+import { CiCalendar } from "react-icons/ci";
 
 const CalendarInput = () => {
   const [inputValue, setInputValue] = useState<{
@@ -47,26 +48,39 @@ const CalendarInput = () => {
 
   return (
     <div className={styles["calendar"]}>
-      <div className={styles["calendar__white"]}>
-        <input
-          id="calendar-input"
-          type="date"
-          min="2020-01-01"
-          max="2030-01-01"
-          className={styles.input}
-          placeholder="Od kiedy wolne"
-          ref={inputRef}
-          onChange={inputChangeHandler}
-          value={currentDate}
-          onClick={inputClickHandler}
-          onFocus={() => setInputFocus(true)}
-        />
-        <CalendarForm
-          inputValue={inputValue}
-          onClick={inputClickHandler}
-          inputFocus={inputFocus}
-          setInputValue={setInputValue}
-        />
+      <div className={styles["calendar__background"]}>
+        <div className={styles["calendar__white"]}>
+          <div className={styles["calendar__input"]}>
+            <div className={styles["calendar__left"]}>
+              <label>Od kiedy wolne</label>
+              <CiCalendar
+                className={styles["icon"]}
+                size={26}
+                onClick={inputClickHandler}
+              />
+              <div>
+                <input
+                  id="calendar-input"
+                  type="date"
+                  min="2020-01-01"
+                  max="2030-01-01"
+                  placeholder="Od kiedy wolne"
+                  ref={inputRef}
+                  onChange={inputChangeHandler}
+                  value={currentDate}
+                  onClick={inputClickHandler}
+                  onFocus={() => setInputFocus(true)}
+                />
+              </div>
+            </div>
+          </div>
+          <CalendarForm
+            inputValue={inputValue}
+            onClick={inputClickHandler}
+            inputFocus={inputFocus}
+            setInputValue={setInputValue}
+          />
+        </div>
       </div>
     </div>
   );

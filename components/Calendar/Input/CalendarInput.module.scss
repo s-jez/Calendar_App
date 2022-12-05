@@ -5,13 +5,51 @@
     height: 3rem;
     margin: 1rem;
     border-radius: 8px;
-    border: 1px solid black;
+    border: 1px solid #202945;
     font-size: .75rem;
     padding: 0 .5rem;
+    overflow: hidden;
+  }
+  &__background {
+    background-color: white;
+    height: 4rem;
+    width: 18rem;
+    padding: 2rem;
+    border-radius: 8px;
   }
   &__white {
+    position: relative;
     background-color: white;
-    height: 5rem;
-    border-radius: .5rem;
+    width: 18rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    border: .1px solid #202945;
+  }
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    padding: 13px;
+    label {
+      color: #5F6579;
+      font-size: 12px;
+      margin-bottom: .05rem;
+    }
+    input {
+      width: 200px;
+      border: 0;
+      font-family: 'Inter', sans-serif;
+      color: #202945;
+      font-size: 14px;
+    }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+    }
+    .icon {
+      position: absolute;
+      left: 88%;
+      bottom: 30%;
+    }
   }
 }
