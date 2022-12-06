@@ -52,8 +52,8 @@ const CalendarForm = ({
 
     setInputValue({
       day: day,
-      month: month,
-      year: year,
+      month: date.month,
+      year: date.year,
     });
   };
 
@@ -63,8 +63,8 @@ const CalendarForm = ({
     );
     setInputValue({
       day: day,
-      month: month,
-      year: year,
+      month: date.month,
+      year: date.year,
     });
   };
 
