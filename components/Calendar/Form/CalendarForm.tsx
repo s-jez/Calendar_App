@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
-import { CALENDAR_WEEKS, CALENDAR_WEEK_DAYS } from "../../../helpers/calendar";
+import { CALENDAR_WEEKS } from "../../../helpers/calendar";
 import {
   getDaysInMonth,
   getFirstDayOfMonth,
@@ -12,6 +12,7 @@ import {
   formatRangeOfMonth,
   formatRangeOfYear,
 } from "../../../helpers/formatDate";
+import getAllMonths from "../../../helpers/getAllMonths";
 
 const CalendarForm = ({
   onClick,
@@ -28,8 +29,7 @@ const CalendarForm = ({
     month: 12,
     year: 2022,
   });
-  const month = dateState.month,
-    year = dateState.year;
+  const { month, year } = dateState;
 
   let firstDayCurrentMonth = getFirstDayOfMonth(year, month),
     daysInCurrentMonth = getDaysInMonth(year, month);
@@ -45,16 +45,27 @@ const CalendarForm = ({
     });
   }, [inputValue]);
 
-  const getAllMonths = () => {
-    let months: JSX.Element[] = [];
-    Object.values(CALENDAR_WEEK_DAYS).forEach((item) =>
-      months.push(
-        <div className={styles.col} key={item}>
-          <div key={item}>{item}</div>
-        </div>
-      )
+  const handleNextMonth = () => {
+    const date = Object.assign(
+      getNextMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
     );
-    return months;
+
+    setInputValue({
+      day: dateState.day,
+      month: date.month,
+      year: date.year,
+    });
+  };
+
+  const handlePrevMonth = () => {
+    const date = Object.assign(
+      getPrevMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
+    );
+    setInputValue({
+      day: dateState.day,
+      month: date.month,
+      year: date.year,
+    });
   };
 
   const getAllDays = () => {
@@ -88,29 +99,6 @@ const CalendarForm = ({
       );
   };
 
-  const handleNextMonth = () => {
-    const date = Object.assign(
-      getNextMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
-    );
-
-    setInputValue({
-      day: dateState.day,
-      month: date.month,
-      year: date.year,
-    });
-  };
-
-  const handlePrevMonth = () => {
-    const date = Object.assign(
-      getPrevMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
-    );
-    setInputValue({
-      day: dateState.day,
-      month: date.month,
-      year: date.year,
-    });
-  };
-
   return (
     <form
       className={styles.form}
@@ -124,7 +112,13 @@ const CalendarForm = ({
         handleNextMonth={handleNextMonth}
       />
       <div className={styles.card}>
-        {getAllMonths()}
+        <>
+          {getAllMonths().map((item) => (
+            <div className={styles.col} key={item}>
+              <div key={item}>{item}</div>
+            </div>
+          ))}
+        </>
         {getAllDays()}
       </div>
     </form>

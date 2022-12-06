@@ -38,17 +38,16 @@ const CalendarInput = () => {
     });
   };
 
-  const inputDataHandler = (data: {
+  const inputDataHandler = (date: {
     day: number;
     month: number;
     year: number;
   }) => {
-    if (inputRef.current !== null)
-      inputRef.current.value = getDateISO(
-        new Date(data.year, data.month, data.day)
-      );
-    // setCurrentDate(data);
-    setInputValue(data);
+    const { day, month, year } = date;
+
+    if (inputRef.current != null)
+      inputRef.current.value = getDateISO(new Date(year, month, day));
+    setInputValue(date);
   };
 
   useEffect(() => {

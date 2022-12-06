@@ -1,5 +1,5 @@
 .form {
-  width: 100%;
+  width: 299px;
   height: 365px;
   max-width: 299px;
   border-radius: 12px;
@@ -44,12 +44,23 @@
 }
 @media (max-width: 1400px) {
   .form {
-    width: 100%;
     .col {
       div {
         width: 2rem;
         height: 2rem;
-        margin: 5px;
+        margin: 4.5px;
+      }
+    }
+  }
+}
+@media (max-width: 350px) {
+  .form {
+    width: 90%;
+    .col {
+      div {
+        width: 2rem;
+        height: 2rem;
+        margin: 2px;
       }
     }
   }

@@ -6,3 +6,8 @@
   align-items: center;
   background: #DFE2F0;
 }
+@media (max-width: 350px) {
+  .main {
+    width: 100%;
+  }
+}
