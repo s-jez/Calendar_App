@@ -29,7 +29,7 @@ const CalendarForm = ({
     month: 12,
     year: 2022,
   });
-  const { month, year } = dateState;
+  const { day, month, year } = dateState;
 
   let firstDayCurrentMonth = getFirstDayOfMonth(year, month),
     daysInCurrentMonth = getDaysInMonth(year, month);
@@ -51,9 +51,9 @@ const CalendarForm = ({
     );
 
     setInputValue({
-      day: dateState.day,
-      month: date.month,
-      year: date.year,
+      day: day,
+      month: month,
+      year: year,
     });
   };
 
@@ -62,9 +62,9 @@ const CalendarForm = ({
       getPrevMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
     );
     setInputValue({
-      day: dateState.day,
-      month: date.month,
-      year: date.year,
+      day: day,
+      month: month,
+      year: year,
     });
   };
 
@@ -80,13 +80,13 @@ const CalendarForm = ({
             onClick={() =>
               setInputValue({
                 day: i + 2 - firstDayCurrentMonth,
-                month: dateState.month,
-                year: dateState.year,
+                month: month,
+                year: year,
               })
             }
           >
             <div className={styles.col}>
-              {i + 2 - firstDayCurrentMonth === dateState.day ? (
+              {i + 2 - firstDayCurrentMonth === day ? (
                 <div className={styles.focused}>
                   {i + 2 - firstDayCurrentMonth}
                 </div>
