@@ -3,7 +3,7 @@
 This project is a Custom Calendar Component. <br />
 ### Link https://cheery-salmiakki-3b804f.netlify.app/
 
-![Calendar Component](https://i.ibb.co/XzXwgGy/calendar.png)
+![Calendar Component](https://i.ibb.co/bFDxFHj/calendar.png)
 
 ## Technologies
 - React.JS
