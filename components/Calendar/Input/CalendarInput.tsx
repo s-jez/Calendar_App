@@ -67,7 +67,7 @@ const CalendarInput = () => {
               <label>Od kiedy wolne</label>
               <CiCalendar
                 className={styles["icon"]}
-                size={26}
+                size={25}
                 onClick={inputClickHandler}
               />
               <div>
