@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
 import {
@@ -19,17 +19,13 @@ import {
 } from "../../../helpers/formatDate";
 import getAllMonths from "../../../helpers/getAllMonths";
 
-const CalendarForm = ({
+const CalendarForm: FC<ICalendarForm> = ({
   onClick,
   inputFocus,
   inputValue,
   setInputValue,
 }: ICalendarForm) => {
-  const [dateState, setDateState] = useState<{
-    day: number;
-    month: number;
-    year: number;
-  }>({
+  const [dateState, setDateState] = useState<DateCalendar>({
     day: CALENDAR_CURRENT_DAY,
     month: CALENDAR_CURRENT_MONTH,
     year: CALENDAR_CURRENT_YEAR,
@@ -117,13 +113,11 @@ const CalendarForm = ({
         handleNextMonth={handleNextMonth}
       />
       <div className={styles.card}>
-        <>
-          {getAllMonths().map((item) => (
-            <div className={styles.col} key={item}>
-              <div key={item}>{item}</div>
-            </div>
-          ))}
-        </>
+        {getAllMonths().map((item) => (
+          <div className={styles.col} key={item}>
+            <div key={item}>{item}</div>
+          </div>
+        ))}
         {getAllDays()}
       </div>
     </form>

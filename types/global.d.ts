@@ -1,5 +1,10 @@
 export {};
 declare global {
+  export interface DateCalendar {
+    day: number;
+    month: number;
+    year: number;
+  }
   interface ICalendarForm {
     inputValue: {
       day: number;
