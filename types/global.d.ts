@@ -27,4 +27,8 @@ declare global {
     handlePrevMonth: MouseEventHandler<HTMLDivElement> | undefined;
     handleNextMonth: MouseEventHandler<HTMLDivElement> | undefined;
   }
+  interface IColumn {
+    data: string;
+    key: number;
+  }
 }

@@ -4,7 +4,7 @@ export const CALENDAR_CURRENT_DAY = new Date().getDate();
 export const CALENDAR_CURRENT_MONTH = new Date().getMonth() + 1;
 export const CALENDAR_CURRENT_YEAR = new Date().getFullYear();
 
-export const CALENDAR_WEEK_DAYS = {
+export const CALENDAR_WEEK_DAYS_NAMES = {
   Monday: "Pn",
   Tuesday: "Wt",
   Wednesday: "Śr",

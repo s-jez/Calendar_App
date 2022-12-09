@@ -13,13 +13,16 @@ import {
   formatRangeOfYear,
 } from "../../../helpers/formatDate";
 import getAllMonths from "../../../helpers/getAllMonths";
+import Column from "../Column/Column";
+import getAllWeeks from "../../../helpers/getAllMonths";
+import Days from "../Days/Days";
 
 const CalendarForm: FC<ICalendarForm> = ({
   onClick,
   inputFocus,
   inputValue,
   setInputValue,
-}: ICalendarForm) => {
+}) => {
   const { day, month, year } = inputValue;
 
   let firstDayCurrentMonth = getFirstDayOfMonth(year, month),
@@ -43,37 +46,6 @@ const CalendarForm: FC<ICalendarForm> = ({
     });
   };
 
-  const getAllDays = () => {
-    return new Array(daysInCurrentMonth + firstDayCurrentMonth - 1)
-      .fill(0)
-      .map((_, i) =>
-        i + 2 <= firstDayCurrentMonth ? (
-          <div key={i}></div>
-        ) : (
-          <div
-            key={i}
-            onClick={() =>
-              setInputValue({
-                day: i + 2 - firstDayCurrentMonth,
-                month: month,
-                year: year,
-              })
-            }
-          >
-            <div className={styles.col}>
-              {i + 2 - firstDayCurrentMonth === day ? (
-                <div className={styles.focused}>
-                  {i + 2 - firstDayCurrentMonth}
-                </div>
-              ) : (
-                <div className={styles.day}>{i + 2 - firstDayCurrentMonth}</div>
-              )}
-            </div>
-          </div>
-        )
-      );
-  };
-
   return (
     <form
       className={styles.form}
@@ -87,13 +59,16 @@ const CalendarForm: FC<ICalendarForm> = ({
         handleNextMonth={handleChangeMonth("next")}
       />
       <div className={styles.card}>
-        {getAllMonths().map((item) => (
-          <div className={styles.col} key={item}>
-            <div key={item}>{item}</div>
-          </div>
+        {getAllWeeks().map((item, i) => (
+          <Column data={item} key={i} />
         ))}
-        {getAllDays()}
       </div>
+      <Days
+        daysInCurrentMonth={daysInCurrentMonth}
+        firstDayCurrentMonth={firstDayCurrentMonth}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
     </form>
   );
 };

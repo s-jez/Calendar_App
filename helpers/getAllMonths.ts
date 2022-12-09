@@ -1,8 +1,6 @@
-import { CALENDAR_WEEK_DAYS } from "./calendar";
+import { CALENDAR_WEEK_DAYS_NAMES } from "./calendar";
 
-const getAllMonths = () => {
-  let months = [] as string[];
-  Object.values(CALENDAR_WEEK_DAYS).forEach((item) => months.push(item));
-  return months;
+const getAllWeeks = () => {
+  return Object.values(CALENDAR_WEEK_DAYS_NAMES).reduce((acc: string[], day) => [...acc, day], []);
 };
-export default getAllMonths;
+export default getAllWeeks;
