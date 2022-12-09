@@ -1,6 +1,6 @@
 export {};
 declare global {
-  export interface DateCalendar {
+  export interface CalendarDate {
     day: number;
     month: number;
     year: number;

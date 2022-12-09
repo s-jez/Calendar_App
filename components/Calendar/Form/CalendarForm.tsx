@@ -25,12 +25,7 @@ const CalendarForm: FC<ICalendarForm> = ({
   inputValue,
   setInputValue,
 }: ICalendarForm) => {
-  const [dateState, setDateState] = useState<DateCalendar>({
-    day: CALENDAR_CURRENT_DAY,
-    month: CALENDAR_CURRENT_MONTH,
-    year: CALENDAR_CURRENT_YEAR,
-  });
-  const { day, month, year } = dateState;
+  const { day, month, year } = inputValue;
 
   let firstDayCurrentMonth = getFirstDayOfMonth(year, month),
     daysInCurrentMonth = getDaysInMonth(year, month);
@@ -38,29 +33,13 @@ const CalendarForm: FC<ICalendarForm> = ({
   firstDayCurrentMonth =
     firstDayCurrentMonth === 0 ? CALENDAR_WEEKS : firstDayCurrentMonth;
 
-  useEffect(() => {
-    setDateState({
-      day: inputValue.day,
-      month: inputValue.month,
-      year: inputValue.year,
-    });
-  }, [inputValue]);
-
-  const handleNextMonth = () => {
+  // https://www.carlrippon.com/using-currying-to-pass-additional-data-to-react-event-handlers/
+  const handleChangeMonth = (direction: "prev" | "next") => () => {
     const date = Object.assign(
-      getNextMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
-    );
-
-    setInputValue({
-      day: day,
-      month: date.month,
-      year: date.year,
-    });
-  };
-
-  const handlePrevMonth = () => {
-    const date = Object.assign(
-      getPrevMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
+      (direction === "prev" ? getPrevMonth : getNextMonth)(
+        formatRangeOfMonth(month),
+        formatRangeOfYear(year)
+      )
     );
     setInputValue({
       day: day,
@@ -109,8 +88,8 @@ const CalendarForm: FC<ICalendarForm> = ({
       <MonthInput
         month={inputValue.month}
         year={inputValue.year}
-        handlePrevMonth={handlePrevMonth}
-        handleNextMonth={handleNextMonth}
+        handlePrevMonth={handleChangeMonth("prev")}
+        handleNextMonth={handleChangeMonth("next")}
       />
       <div className={styles.card}>
         {getAllMonths().map((item) => (

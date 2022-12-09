@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, ChangeEvent, useEffect } from "react";
+import React, { useRef, useState, ChangeEvent, useEffect } from "react";
 import styles from "../../Calendar/Input/CalendarInput.module.scss";
 import CalendarForm from "../Form/CalendarForm";
 import {
@@ -14,13 +14,13 @@ import {
   CALENDAR_CURRENT_YEAR,
 } from "../../../helpers/calendar";
 
-const CalendarInput: FC = () => {
-  const [inputValue, setInputValue] = useState<DateCalendar>({
+const CalendarInput = () => {
+  const [inputValue, setInputValue] = useState<CalendarDate>({
     day: CALENDAR_CURRENT_DAY,
     month: CALENDAR_CURRENT_MONTH,
     year: CALENDAR_CURRENT_YEAR,
   });
-  const [currentDate, setCurrentDate] = useState<any>(new Date());
+  const [currentDate, setCurrentDate] = useState<string>("");
   const [inputFocus, setInputFocus] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,8 +33,8 @@ const CalendarInput: FC = () => {
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const date = new Date(e.target.value),
-      year = formatRangeOfYear(CALENDAR_CURRENT_YEAR),
-      month = formatRangeOfMonth(CALENDAR_CURRENT_MONTH),
+      year = formatRangeOfYear(date.getFullYear()),
+      month = formatRangeOfMonth(date.getMonth() + 1),
       day = formatRangeOfDay(date.getDate(), year, month);
     inputDataHandler({
       day,
@@ -43,7 +43,7 @@ const CalendarInput: FC = () => {
     });
   };
 
-  const inputDataHandler = (date: DateCalendar) => {
+  const inputDataHandler = (date: CalendarDate) => {
     const { day, month, year } = date;
 
     if (inputRef.current != null)

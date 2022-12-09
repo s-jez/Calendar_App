@@ -8,7 +8,7 @@ const MonthInput: FC<IMonthInput> = ({
   year,
   handlePrevMonth,
   handleNextMonth,
-}: IMonthInput) => {
+}) => {
   return (
     <div className={styles.month}>
       <div className={styles.arrow} onClick={handlePrevMonth}>
