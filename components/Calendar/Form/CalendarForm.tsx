@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
-import { CALENDAR_WEEKS } from "../../../helpers/calendar";
+import {
+  CALENDAR_CURRENT_DAY,
+  CALENDAR_CURRENT_MONTH,
+  CALENDAR_CURRENT_YEAR,
+  CALENDAR_WEEKS,
+} from "../../../helpers/calendar";
 import {
   getDaysInMonth,
   getFirstDayOfMonth,
@@ -25,9 +30,9 @@ const CalendarForm = ({
     month: number;
     year: number;
   }>({
-    day: 2,
-    month: 12,
-    year: 2022,
+    day: CALENDAR_CURRENT_DAY,
+    month: CALENDAR_CURRENT_MONTH,
+    year: CALENDAR_CURRENT_YEAR,
   });
   const { day, month, year } = dateState;
 
