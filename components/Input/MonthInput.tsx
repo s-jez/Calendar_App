@@ -3,7 +3,7 @@ import styles from "../Input/Input.module.scss";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { CALENDAR_MONTH_NAMES } from "../../helpers/calendar";
 
-// Tutaj też można dodać FC
+// Tutaj też można dodać FC i interface
 const MonthInput = ({
   month,
   year,
