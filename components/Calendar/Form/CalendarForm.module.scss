@@ -8,10 +8,10 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   .card {
     display: grid;
-    grid-template-columns:  repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
   .col {
-    div{
+    div {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -19,11 +19,11 @@
       height: 40px;
       border: 1px solid transparent;
       font-size: 12px;
-      color: #5F6579;
+      color: #5f6579;
     }
     .focused {
       background-color: white;
-      color: #5F6579;
+      color: #5f6579;
       border-radius: 100%;
       cursor: pointer;
       border: 1px solid black;

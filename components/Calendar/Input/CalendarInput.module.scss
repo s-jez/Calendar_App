@@ -6,8 +6,8 @@
     margin: 1rem;
     border-radius: 8px;
     border: 1px solid #202945;
-    font-size: .75rem;
-    padding: 0 .5rem;
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
     overflow: hidden;
   }
   &__background {
@@ -23,7 +23,7 @@
     width: 18rem;
     height: 3.5rem;
     border-radius: 1rem;
-    border: .1px solid #202945;
+    border: 0.1px solid #202945;
   }
   &__left {
     display: flex;
@@ -31,32 +31,36 @@
     align-items: space-around;
     padding: 13px;
     label {
-      color: #5F6579;
+      color: #5f6579;
       font-size: 12px;
-      margin-bottom: .05rem;
+      margin-bottom: 0.05rem;
       line-height: 15px;
     }
     input {
       width: 200px;
       border: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       color: #202945;
       font-size: 14px;
-    }
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
     }
     .icon {
       position: absolute;
       left: 88%;
       bottom: 30%;
     }
+    input[type="date"]::-webkit-inner-spin-button,
+    [type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+    }
   }
 }
-@media (max-width: 400px) {
-  .calendar__background {
-    padding: 0;
+@media (max-width: 600px) {
+  .calendar {
+    display: flex;
+    margin: auto;
+    margin: 10rem 0;
+    &__backround {
+      padding: 0;
+    }
   }
 }
-
