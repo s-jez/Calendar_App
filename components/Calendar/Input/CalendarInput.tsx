@@ -9,13 +9,22 @@ import {
 import { getDateISO } from "../../../helpers/getMonthDate";
 import { CiCalendar } from "react-icons/ci";
 
-const CalendarInput = () => {
-  const [inputValue, setInputValue] = useState<{
+// defaultowe wartosci warto pisac w taki sposob i wynosic poza komponent
+const DEFAULT_DATE = {
+    day: 2,
+    month: 12,
+    year: 2022,
+}
+// Warto tworzyć interface pod konkretne typy 
+interface CalendarDate {
     day: number;
     month: number;
     year: number;
-  }>({ day: 2, month: 12, year: 2022 });
-  const [currentDate, setCurrentDate] = useState<any>(new Date());
+}
+
+const CalendarInput = () => {
+  const [inputValue, setInputValue] = useState<CalendarDate>(DEFAULT_DATE);
+  const [currentDate, setCurrentDate] = useState<string>('');
   const [inputFocus, setInputFocus] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);

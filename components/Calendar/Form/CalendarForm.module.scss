@@ -11,6 +11,7 @@
     grid-template-columns:  repeat(7, 1fr);
   }
   .col {
+	// staraj się stylować po klasach
     div{
       display: flex;
       justify-content: center;

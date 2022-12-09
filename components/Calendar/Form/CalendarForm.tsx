@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import MonthInput from "../../Input/MonthInput";
 import styles from "../Form/CalendarForm.module.scss";
 import { CALENDAR_WEEKS } from "../../../helpers/calendar";
@@ -14,22 +14,15 @@ import {
 } from "../../../helpers/formatDate";
 import getAllMonths from "../../../helpers/getAllMonths";
 
-const CalendarForm = ({
+// propsy do komponentów można "wrzucać" poprzez FC
+const CalendarForm: FC<ICalendarForm> = ({
   onClick,
   inputFocus,
   inputValue,
   setInputValue,
-}: ICalendarForm) => {
-  const [dateState, setDateState] = useState<{
-    day: number;
-    month: number;
-    year: number;
-  }>({
-    day: 2,
-    month: 12,
-    year: 2022,
-  });
-  const { day, month, year } = dateState;
+}) => {
+  // Samo ustawienie dodatkowo Date nie jest nam potrzebne możemy operować na inputValue
+  const { day, month, year } = inputValue;
 
   let firstDayCurrentMonth = getFirstDayOfMonth(year, month),
     daysInCurrentMonth = getDaysInMonth(year, month);
@@ -37,17 +30,13 @@ const CalendarForm = ({
   firstDayCurrentMonth =
     firstDayCurrentMonth === 0 ? CALENDAR_WEEKS : firstDayCurrentMonth;
 
-  useEffect(() => {
-    setDateState({
-      day: inputValue.day,
-      month: inputValue.month,
-      year: inputValue.year,
-    });
-  }, [inputValue]);
 
-  const handleNextMonth = () => {
+  // Dwie funkcje sa bardzo podobne do siebie także można z nich zrobić jedną
+  // I potem można użyć currying'u
+  // https://www.carlrippon.com/using-currying-to-pass-additional-data-to-react-event-handlers/
+  const handleChangeMonth = (direction: 'prev' | 'next') => () => {
     const date = Object.assign(
-      getNextMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
+      (direction === 'prev' ? getPrevMonth : getNextMonth)(formatRangeOfMonth(month), formatRangeOfYear(year))
     );
 
     setInputValue({
@@ -57,17 +46,7 @@ const CalendarForm = ({
     });
   };
 
-  const handlePrevMonth = () => {
-    const date = Object.assign(
-      getPrevMonth(formatRangeOfMonth(month), formatRangeOfYear(year))
-    );
-    setInputValue({
-      day: day,
-      month: date.month,
-      year: date.year,
-    });
-  };
-
+  // to można przenieść do osobnego komponentu Days
   const getAllDays = () => {
     return new Array(daysInCurrentMonth + firstDayCurrentMonth - 1)
       .fill(0)
@@ -86,6 +65,7 @@ const CalendarForm = ({
             }
           >
             <div className={styles.col}>
+                {/* Dla i + 2 - firstDayCurrentMonth przydałaby się jakaś nazwa która mówi dokładnie co kryje się pod ta libczba  */}
               {i + 2 - firstDayCurrentMonth === day ? (
                 <div className={styles.focused}>
                   {i + 2 - firstDayCurrentMonth}
@@ -108,12 +88,14 @@ const CalendarForm = ({
       <MonthInput
         month={inputValue.month}
         year={inputValue.year}
-        handlePrevMonth={handlePrevMonth}
-        handleNextMonth={handleNextMonth}
+        handlePrevMonth={handleChangeMonth('prev')}
+        handleNextMonth={handleChangeMonth('next')}
       />
       <div className={styles.card}>
         <>
+        
           {getAllMonths().map((item) => (
+        //    z tego tez mozna zrobic odobny komponent
             <div className={styles.col} key={item}>
               <div key={item}>{item}</div>
             </div>

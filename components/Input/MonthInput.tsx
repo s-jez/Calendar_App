@@ -3,13 +3,13 @@ import styles from "../Input/Input.module.scss";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { CALENDAR_MONTH_NAMES } from "../../helpers/calendar";
 
+// Tutaj też można dodać FC
 const MonthInput = ({
   month,
   year,
   handlePrevMonth,
   handleNextMonth,
-}: IMonthInput) => {
-  return (
+}: IMonthInput) => (
     <div className={styles.month}>
       <div className={styles.arrow} onClick={handlePrevMonth}>
         <SlArrowLeft size={13} />
@@ -21,7 +21,7 @@ const MonthInput = ({
         <SlArrowRight size={13} />
       </div>
     </div>
-  );
-};
+);
+
 
 export default MonthInput;
