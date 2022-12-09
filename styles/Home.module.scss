@@ -1,13 +1,7 @@
 .main {
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #DFE2F0;
-}
-@media (max-width: 350px) {
-  .main {
-    width: 100%;
-  }
+  width: 100%;
+  height: 100vh;
 }

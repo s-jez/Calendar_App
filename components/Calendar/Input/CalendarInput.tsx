@@ -8,14 +8,19 @@ import {
 } from "../../../helpers/formatDate";
 import { getDateISO } from "../../../helpers/getMonthDate";
 import { CiCalendar } from "react-icons/ci";
+import {
+  CALENDAR_CURRENT_DAY,
+  CALENDAR_CURRENT_MONTH,
+  CALENDAR_CURRENT_YEAR,
+} from "../../../helpers/calendar";
 
 const CalendarInput = () => {
-  const [inputValue, setInputValue] = useState<{
-    day: number;
-    month: number;
-    year: number;
-  }>({ day: 2, month: 12, year: 2022 });
-  const [currentDate, setCurrentDate] = useState<any>(new Date());
+  const [inputValue, setInputValue] = useState<CalendarDate>({
+    day: CALENDAR_CURRENT_DAY,
+    month: CALENDAR_CURRENT_MONTH,
+    year: CALENDAR_CURRENT_YEAR,
+  });
+  const [currentDate, setCurrentDate] = useState<string>("");
   const [inputFocus, setInputFocus] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,11 +43,7 @@ const CalendarInput = () => {
     });
   };
 
-  const inputDataHandler = (date: {
-    day: number;
-    month: number;
-    year: number;
-  }) => {
+  const inputDataHandler = (date: CalendarDate) => {
     const { day, month, year } = date;
 
     if (inputRef.current != null)
