@@ -1,5 +1,5 @@
 import Head from "next/head";
-import CalendarInput from "../components/Calendar/Input/CalendarInput";
+import Calendar from "../components/Calendar/CalendarContainer/Calendar";
 import styles from "../styles/Home.module.scss";
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
-        <CalendarInput />
+        <Calendar />
       </main>
     </div>
   );

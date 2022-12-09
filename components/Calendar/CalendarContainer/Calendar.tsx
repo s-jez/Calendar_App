@@ -1,6 +1,6 @@
 import React, { useRef, useState, ChangeEvent, useEffect } from "react";
-import styles from "../../Calendar/Input/CalendarInput.module.scss";
-import CalendarForm from "../Form/CalendarForm";
+import styles from "../../Calendar/CalendarContainer/Calendar.module.scss";
+import Form from "../CalendarForm/Form";
 import {
   formatRangeOfDay,
   formatRangeOfMonth,
@@ -87,7 +87,7 @@ const CalendarInput = () => {
               </div>
             </div>
           </div>
-          <CalendarForm
+          <Form
             inputValue={inputValue}
             onClick={inputClickHandler}
             inputFocus={inputFocus}

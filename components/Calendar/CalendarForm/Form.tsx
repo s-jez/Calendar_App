@@ -1,12 +1,7 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 import MonthInput from "../../Input/MonthInput";
-import styles from "../Form/CalendarForm.module.scss";
-import {
-  CALENDAR_CURRENT_DAY,
-  CALENDAR_CURRENT_MONTH,
-  CALENDAR_CURRENT_YEAR,
-  CALENDAR_WEEKS,
-} from "../../../helpers/calendar";
+import styles from "../CalendarForm/Form.module.scss";
+import { CALENDAR_WEEKS } from "../../../helpers/calendar";
 import {
   getDaysInMonth,
   getFirstDayOfMonth,
